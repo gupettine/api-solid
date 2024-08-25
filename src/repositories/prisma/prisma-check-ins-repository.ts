@@ -20,7 +20,7 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
 
     const checkIn = await prisma.checkIn.findFirst({
       where: {
-        user_id: userId,
+        userId: userId,
         created_at: {
           gte: startOfTheDay.toDate(),
           lte: endOfTheDay.toDate(),
@@ -34,7 +34,7 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async findManyByUserId(userId: string, page: number) {
     const checkIns = await prisma.checkIn.findMany({
       where: {
-        user_id: userId,
+        userId: userId,
       },
       skip: (page - 1) * 20,
       take: 20,
@@ -46,7 +46,7 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async countByUserId(userId: string) {
     const count = await prisma.checkIn.count({
       where: {
-        user_id: userId,
+        userId: userId,
       },
     })
 
